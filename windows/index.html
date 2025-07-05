@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Setting Up venv on Windows</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .zoom-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .zoom-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 0.75rem;
+    }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800 font-sans p-6">
+  <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-blue-200">
+    <h1 class="text-3xl font-bold text-blue-700 mb-6">Setting Up <code>venv</code> on Windows</h1>
+
+    <!-- Step 1 -->
+    <h2 class="text-xl font-semibold mt-6 text-blue-600">✅ Step 1: Install Python (if not installed)</h2>
+    <p>Download from: <a href="https://www.python.org" class="text-blue-500 underline">https://www.python.org</a></p>
+    <p class="mt-2">Important: During installation, check the box <strong>“Add Python to PATH”</strong></p>
+
+    <!-- Step 2 -->
+    <h2 class="text-xl font-semibold mt-6 text-blue-600">✅ Step 2: Create a Virtual Environment</h2>
+    <p># Open Command Prompt or PowerShell.</p>
+    <p># Navigate to your folder:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>cd project\Test</code></pre>
+    <p>Then run:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>python -m venv test</code></pre>
+    <p class="mt-2">📁 This will create a folder structure like:</p>
+    <pre class="bg-gray-100 text-sm p-4 rounded-md overflow-x-auto"><code>
+project/
+└── Test/
+    └── test/
+        ├── Scripts/
+        └── Lib/</code></pre>
+    <img src="../image/images3.png" alt="Venv setup screenshot" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+
+    <!-- Step 3 -->
+    <h2 class="text-xl font-semibold mt-6 text-blue-600">✅ Step 3: Activate the Virtual Environment</h2>
+
+    <p class="font-medium">1. Using Command Prompt (Recommended in VS Code):</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>test\Scripts\activate</code></pre>
+    <img src="../image/images6.png" alt="Venv setup screenshot" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+
+    <p class="mt-1">If it doesn’t work, try:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>test\Scripts\activate.bat</code></pre>
+
+    <p class="mt-3">✅ It's better to use <strong>Command Prompt (cmd.exe)</strong> because it doesn’t require changing execution policy like PowerShell.</p>
+
+    <p class="font-medium mt-4">2. Using PowerShell:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>.\test\Scripts\Activate.ps1</code></pre>
+
+    <p class="mt-2 text-red-600 font-medium">❗ If you see this error:</p>
+    <pre class="bg-gray-100 text-sm p-4 rounded-md overflow-x-auto"><code>File Activate.ps1 cannot be loaded because running scripts is disabled...</code></pre>
+
+    <p>Run this once in PowerShell as Administrator:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code></pre>
+
+    <p class="mt-3">Then activate again:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>.\test\Scripts\Activate.ps1</code></pre>
+    <img src="../image/images7.png" alt="Venv setup screenshot" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+
+    <p class="mt-4">✅ You’ll now see:</p>
+    <pre class="bg-gray-100 text-sm p-4 rounded-md overflow-x-auto"><code>(test) C:\project\Test></code></pre>
+    <img src="../image/images4.png" alt="Venv setup screenshot" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+    <p>This means the virtual environment is active.</p>
+
+    <!-- Step 4 -->
+    <h2 class="text-xl font-semibold mt-6 text-blue-600">✅ Step 4: Install a Module (e.g., <code>requests</code>)</h2>
+    <p>Use this after activating the environment:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>pip install requests</code></pre>
+
+    <!-- Step 5 -->
+    <h2 class="text-xl font-semibold mt-6 text-blue-600">✅ Step 5: Deactivate the Environment</h2>
+    <p>To exit the virtual environment:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-md overflow-x-auto"><code>deactivate</code></pre>
+    <img src="../image/images5.png" alt="Venv setup screenshot" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+  </div>
+
+  <!-- Zoom Overlay Script -->
+  <div id="zoomContainer" class="hidden zoom-overlay" onclick="closeZoom()">
+    <img id="zoomedImg" src="" alt="Zoomed image">
+  </div>
+
+  <script>
+    function zoomImage(img) {
+      const zoomContainer = document.getElementById('zoomContainer');
+      const zoomedImg = document.getElementById('zoomedImg');
+      zoomedImg.src = img.src;
+      zoomContainer.classList.remove('hidden');
+    }
+    function closeZoom() {
+      const zoomContainer = document.getElementById('zoomContainer');
+      zoomContainer.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

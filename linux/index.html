@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Python venv Setup on Linux</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .zoom-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+    .zoom-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 0.75rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 p-6 font-sans">
+  <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-md">
+    <h1 class="text-3xl font-bold mb-6 text-blue-600">Setting Up <code>venv</code> on Linux (Ubuntu / Xubuntu / Debian)</h1>
+
+    <!-- Step 1 -->
+    <h2 class="text-xl font-semibold mt-6 mb-2">Step 1: Install Python (if not installed)</h2>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-lg overflow-x-auto">
+<code>sudo apt update
+sudo apt install python3 python3-venv python3-pip</code></pre>
+    <img src="../image/images1.jpg" alt="sudo apt update" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+    <img src="../image/images2.png" alt="Install Python" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+
+    <!-- Step 2 -->
+    <h2 class="text-xl font-semibold mt-6 mb-2">Step 2: Create a Virtual Environment</h2>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-lg overflow-x-auto">
+<code>python3 -m venv venv_name
+
+# Example:
+python3 -m venv test
+
+# This will create a folder named 'test' in your project directory.</code></pre>
+    <img src="../image/images3.png" alt="Create venv folder" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+
+    <!-- Step 3 -->
+    <h2 class="text-xl font-semibold mt-6 mb-2">Step 3: Activate the Virtual Environment</h2>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-lg overflow-x-auto">
+<code># Use one of the following:
+
+source test/bin/activate
+. test/bin/activate
+
+# You'll see (test) before your terminal prompt — it means the environment is active.</code></pre>
+    <img src="../image/images4.png" alt="Activate venv" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+
+    <!-- Step 4 -->
+    <h2 class="text-xl font-semibold mt-6 mb-2">Step 4: Install a Module (e.g., requests)</h2>
+    <p class="mb-2">To install any Python module in the virtual environment, use:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-lg overflow-x-auto"><code>pip install module_name</code></pre>
+    <p class="mt-2">Example:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-lg overflow-x-auto"><code>pip install requests</code></pre>
+
+    <!-- Step 5 -->
+    <h2 class="text-xl font-semibold mt-6 mb-2">Step 5: Deactivate</h2>
+    <p class="mb-2">To exit the virtual environment:</p>
+    <pre class="bg-gray-800 text-green-200 p-4 rounded-lg overflow-x-auto"><code>deactivate</code></pre>
+    <img src="../image/images5.png" alt="Deactivate venv" class="mt-2 cursor-zoom-in rounded-lg w-3/4 mx-auto" onclick="zoomImage(this)">
+  </div>
+
+  <!-- Zoom Modal -->
+  <div id="zoomContainer" class="hidden zoom-overlay" onclick="closeZoom()">
+    <img id="zoomedImg" src="" alt="Zoomed Image">
+  </div>
+
+  <!-- JavaScript to zoom -->
+  <script>
+    function zoomImage(img) {
+      const zoom = document.getElementById('zoomContainer');
+      const zoomedImg = document.getElementById('zoomedImg');
+      zoomedImg.src = img.src;
+      zoom.classList.remove('hidden');
+    }
+    function closeZoom() {
+      document.getElementById('zoomContainer').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
