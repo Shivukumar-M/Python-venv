@@ -71,7 +71,7 @@ project/
    Paste this in **CMD** after activating venv:
 
    ```bash
-   pip install requests pandas matplotlib scikit-learn
+   pip install pandas matplotlib scikit-learn
    ```
 
 5. **Deactivate venv**
@@ -111,7 +111,7 @@ project/
    Paste this in **Terminal** after activating venv:
 
    ```bash
-   pip install requests pandas matplotlib scikit-learn
+   pip install pandas matplotlib scikit-learn
    ```
 
 5. **Deactivate venv**
@@ -122,24 +122,5 @@ project/
 
 ---
 
-## ✅ Additional Notes:
-
-* To verify installed modules:
-
-  ```bash
-  pip list
-  ```
-* To freeze dependencies into `requirements.txt`:
-
-  ```bash
-  pip freeze > requirements.txt
-  ```
-* To install from `requirements.txt`:
-
-  ```bash
-  pip install -r requirements.txt
-  ```
-
----
 
 
